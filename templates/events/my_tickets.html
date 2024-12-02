@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>My Tickets</h2>
+<div class="row">
+    {% for ticket in tickets %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ticket.event.title }}</h5>
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="fas fa-calendar"></i> {{ ticket.event.date|date:"F d, Y - H:i" }}
+                            <br>
+                            <i class="fas fa-map-marker-alt"></i> {{ ticket.event.venue }}
+                            <br>
+                            <i class="fas fa-ticket-alt"></i> Ticket #: {{ ticket.ticket_number }}
+                        </small>
+                    </p>
+                    <form method="POST" action="{% url 'cancel-ticket' ticket.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-times"></i> Cancel Ticket
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <p>You haven't purchased any tickets yet.</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
