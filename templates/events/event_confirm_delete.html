@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="delete-confirmation">
+    <h2>Delete Event</h2>
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete the event "{{ object.title }}"?</p>
+        <div class="confirmation-actions">
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'event-detail' object.pk %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}
