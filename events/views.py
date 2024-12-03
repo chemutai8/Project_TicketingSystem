@@ -88,8 +88,10 @@ def my_tickets(request):
 @login_required
 def cancel_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id, user=request.user)
-    if not ticket.is_cancelled:
-        ticket.is_cancelled = True
-        ticket.save()
-        messages.success(request, 'Ticket cancelled successfully.')
-    return redirect('my-tickets')
+    if request.method == 'POST':
+        if not ticket.is_cancelled:
+            ticket.is_cancelled = True
+            ticket.save()
+            messages.success(request, 'Ticket cancelled successfully.')
+            return redirect('my-tickets')
+    return render(request, 'events/confirm_cancel.html', {'ticket': ticket})

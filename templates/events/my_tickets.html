@@ -17,12 +17,9 @@
                             <i class="fas fa-ticket-alt"></i> Ticket #: {{ ticket.ticket_number }}
                         </small>
                     </p>
-                    <form method="POST" action="{% url 'cancel-ticket' ticket.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fas fa-times"></i> Cancel Ticket
-                        </button>
-                    </form>
+                    <a href="{% url 'cancel-ticket' ticket.id %}" class="btn btn-danger">
+                        <i class="fas fa-times"></i> Cancel Ticket
+                    </a>
                 </div>
             </div>
         </div>
