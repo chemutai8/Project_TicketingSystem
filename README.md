@@ -28,7 +28,7 @@ cd ticketing_system
 2. Create a virtual environment and activate it:
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+source venv\Scripts\activate #on linux use venv/bin/activate  
 ```
 
 3. Install required packages:
@@ -67,10 +67,13 @@ The application will be available at `http://127.0.0.1:8000/`
 ```
 ticketing_system/
 ├── events/                 # Events app
+│   ├── migrations/          # Migrations folder
+│   ├── apps.py          # Application
 │   ├── models.py          # Event and Ticket models
 │   ├── views.py           # View logic
 │   ├── forms.py           # Forms for events and tickets
-│   └── urls.py            # URL routing
+│   ├── urls.py            # URL routing
+│   └── admin.py            # admin models
 ├── users/                 # Users app
 │   ├── views.py          # User-related views
 │   ├── forms.py          # User registration forms

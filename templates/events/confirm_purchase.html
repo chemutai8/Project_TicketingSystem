@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="confirm-purchase">
+    <h2>Confirm Purchase for {{ event.title }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="confirm_purchase" value="true">
+        <p>Total Price: {{ total_price }}</p>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success">Confirm Purchase</button>
+            <a href="{% url 'event-detail' event.pk %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock content %}

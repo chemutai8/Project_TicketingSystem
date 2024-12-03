@@ -61,17 +61,24 @@ class EventDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def purchase_ticket(request, pk):
     event = get_object_or_404(Event, pk=pk)
     if request.method == 'POST':
-        form = TicketPurchaseForm(request.POST)
+        form = TicketPurchaseForm(request.POST, event=event)
         if form.is_valid():
-            quantity = form.cleaned_data['quantity']
-            if event.available_tickets >= quantity:
-                for _ in range(quantity):
-                    Ticket.objects.create(event=event, user=request.user)
-                messages.success(request, f'Successfully purchased {quantity} ticket(s)!')
-                return redirect('event-detail', pk=pk)
+            if 'confirm_purchase' in request.POST:
+                # Create tickets upon confirmation
+                quantity = form.cleaned_data['quantity']
+                if event.available_tickets >= quantity:
+                    for _ in range(quantity):
+                        Ticket.objects.create(event=event, user=request.user)
+                    messages.success(request, f'Successfully purchased {quantity} ticket(s)!')
+                    return redirect('event-list')
+                else:
+                    messages.error(request, 'Not enough tickets available.')
             else:
-                messages.error(request, 'Not enough tickets available.')
-    return redirect('event-detail', pk=pk)
+                total_price = form.calculate_total_price()
+                return render(request, 'events/confirm_purchase.html', {'form': form, 'total_price': total_price, 'event': event})
+    else:
+        form = TicketPurchaseForm(event=event)
+    return render(request, 'events/purchase_ticket.html', {'form': form, 'event': event})
 
 @login_required
 def my_tickets(request):
