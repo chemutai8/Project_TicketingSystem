@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-    padding: 20px;
+    padding: 5px;
     border-radius: 8px;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 .card-body {
-    padding: 6px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -54,11 +54,11 @@ body {
   cursor: pointer;
   position: relative;
   z-index: 0;
-  border-radius: 25px; /* Updated to have more rounded edges */
+  border-radius: 25px; /* Rounded edges */
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  font-weight: bold; /* Make the text bold */
+  font-weight: bold; /* Make text bold */
   text-decoration: none; /* Remove underline */
 }
 
@@ -87,7 +87,7 @@ body {
   height: calc(100% + 4px);
   animation: glowing-button-85 20s linear infinite;
   transition: opacity 0.3s ease-in-out;
-  border-radius: 25px; /* Updated to match button edges */
+  border-radius: 25px; /* Rounded edges */
 }
 
 @keyframes glowing-button-85 {
@@ -111,5 +111,5 @@ body {
   background: #222;
   left: 0;
   top: 0;
-  border-radius: 25px; /* Updated to match button edges */
+  border-radius: 25px; /* Rounded edges */
 }

@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card">
+<div class="wrapper">
     <div class="card-body">
         <h2>You have been logged out</h2>
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                <a href="{% url 'login' %}">Log In Again</a>
-            </small>
+        <div class="register">
+            <a href="{% url 'login' %}" class="button-85">Log In Again</a>
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock %}
