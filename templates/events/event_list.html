@@ -4,23 +4,25 @@
 <div class="row">
     {% for event in events %}
         <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ event.title }}</h5>
-                    <p class="card-text">{{ event.description|truncatewords:30 }}</p>
-                    <p class="card-text">
-                        <small class="text-muted">
-                            <i class="fas fa-calendar"></i> {{ event.date|date:"F d, Y" }}
-                            <br>
-                            <i class="fas fa-map-marker-alt"></i> {{ event.venue }}
-                        </small>
-                    </p>
-                    <p class="card-text">
-                        <strong>Price:</strong> ${{ event.price }}
-                        <br>
-                        <strong>Available Tickets:</strong> {{ event.available_tickets }}
-                    </p>
-                    <a href="{% url 'event-detail' event.pk %}" class="btn btn-primary">View Details</a>
+            <div class="card border-0 shadow-sm">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <div>
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="card-text">{{ event.description|truncatewords:15 }}</p>
+                        <p class="card-text text-muted">
+                            <i class="fas fa-calendar-alt me-2"></i>{{ event.date|date:"F d, Y" }}
+                        </p>
+                        <p class="card-text text-muted">
+                            <i class="fas fa-map-marker-alt me-2"></i>{{ event.venue }}
+                        </p>
+                        <p class="card-text text-muted">
+                            <strong>Price:</strong> ${{ event.price }}
+                        </p>
+                        <p class="card-text text-muted">
+                            <strong>Available Tickets:</strong> {{ event.available_tickets }}
+                        </p>
+                    </div>
+                    <a href="{% url 'event-detail' event.pk %}" class="button-85 align-self-end mt-3"><strong>View Details</strong></a>
                 </div>
             </div>
         </div>
