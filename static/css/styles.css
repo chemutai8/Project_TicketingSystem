@@ -1,0 +1,22 @@
+body {
+    background: url('/static/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+.navbar, .container {
+    background: transparent;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.alert-dismissible .btn-close {
+    color: #fff;
+}
+
+.container {
+    padding: 8px;
+    border-radius: 8px;
+}
