@@ -14,7 +14,14 @@
             {{ form.password|as_crispy_field }}
             <label>Enter your password</label>
         </div>
-                <button type="submit" class="button-85">Login</button>
+        <div class="forget">
+            <label for="remember">
+                <input type="checkbox" id="remember" name="remember">
+                <p>Remember me</p>
+            </label>
+            <a href="{% url 'password_reset' %}">Forgot password?</a>
+        </div>
+        <button type="submit" class="button-85">Login</button>
         <div class="register">
             <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
         </div>
